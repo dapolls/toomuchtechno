@@ -20,7 +20,16 @@ function init(){
     len = musicarr.length;
     
     run(musicarr[current], audio[0]);
+
+    audio[0].addEventListener('ended',function(e){
+        current++;
+        if(current == len){
+            current = 0;
+        }
+        run(musicarr[current],audio[0]);
+    });
 }
+
 $(document).keypress(handle_change_track);
 
 function handle_change_track(e){
